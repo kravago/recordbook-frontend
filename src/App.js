@@ -10,7 +10,7 @@ import userContext from './userContext';
 import RBApi from './api';
 import Routes from './Routes';
 import './App.css';
-import NavBar from './Navbar';
+import NavBar from './components/Navbar/Navbar';
 
 function App() {
   const INITIAL_STATE = '';
@@ -24,6 +24,7 @@ function App() {
   const login = async (loginFormData) => {
     try {
       const res = await RBApi.login(loginFormData);
+      setCurrentToken(res.token);
       console.log("login success")
     } catch (e) {
       alert(e);
@@ -37,7 +38,7 @@ function App() {
   }
 
   const logout = async () => {
-    // setCurrentToken(null);
+    setCurrentToken(null);
     setCurrentUser(INITIAL_STATE);
     setUserInfo(USER_INIT_STATE);
     alert("User logged out");
@@ -54,7 +55,7 @@ function App() {
     // check if there is a token
     const token_check = localStorage.getItem('token');
     if (token_check) {
-      const {username} = jwt.decode(token_check);
+      const { username } = jwt.decode(token_check);
       setCurrentUser(username);
       getUserInfo(username);
     }

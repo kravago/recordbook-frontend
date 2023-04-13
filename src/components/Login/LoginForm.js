@@ -21,7 +21,7 @@ function LoginForm({login}) {
   }
     return (
       <>
-        <h1 style={{color: 'white'}}>Login</h1>
+        <h1 style={{color: 'black'}}>Login</h1>
         <Form onSubmit={handleSubmit}>
           <Form.Control
             name="username"
