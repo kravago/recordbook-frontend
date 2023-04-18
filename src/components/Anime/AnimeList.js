@@ -7,12 +7,16 @@ function AnimeList() {
   const [animes, setAnimes] = useState([]);
 
   useEffect(() => {
-    const getAnimes = async () => {
-      const req = await RBApi.getTopAnimes();
-      setAnimes(req);
-    }
+
+    console.log("get animes has run");
+    
     getAnimes();
   }, []);
+
+  const getAnimes = async () => {
+    const req = await RBApi.getTopAnimes();
+    setAnimes(req);
+  }
 
 //   const updateCompanies = (filteredCompanies) => {
 //     setCompanies([...filteredCompanies]);

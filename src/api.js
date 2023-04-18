@@ -42,7 +42,7 @@ class RBApi {
   }
 
   static async getTopAnimes() {
-    let res = await this.request('top_anime');
+    let res = await this.request('anime/top_anime');
     return res;
   }
 

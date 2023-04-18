@@ -14,10 +14,10 @@ function LoginForm({login}) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    login(formData);
+    await login(formData);
     setFormData(INITIAL_STATE);
     history.push("/");
-    alert("Login Successful!");
+    // alert("Login Successful!");
   }
     return (
       <>

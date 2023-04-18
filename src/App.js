@@ -18,7 +18,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState(INITIAL_STATE);
   const [userInfo, setUserInfo] = useState(USER_INIT_STATE);
   const [currentToken, setCurrentToken] = useLocalStorage('token');
-  const [appliedIds, setAppliedIds] = useState(new Set());
   const [isLoading, setIsLoading] = useState(false);
 
   const login = async (loginFormData) => {
@@ -26,6 +25,7 @@ function App() {
       const res = await RBApi.login(loginFormData);
       setCurrentToken(res.token);
       console.log("login success")
+      alert("login success")
     } catch (e) {
       alert(e);
       console.error("Problem in login", e)
@@ -47,11 +47,12 @@ function App() {
   useEffect(() => {
     // get user info each time there is a login
     const getUserInfo = async (username) => {
-      RBApi.token = currentToken;
       const res = await RBApi.getUser(username);
       setUserInfo(res);
     }
 
+    console.log("token check has run");
+    
     // check if there is a token
     const token_check = localStorage.getItem('token');
     if (token_check) {
