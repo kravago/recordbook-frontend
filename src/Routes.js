@@ -5,7 +5,7 @@ import SignupForm from './components/Signup/SignupForm';
 import AnimeList from './components/Anime/AnimeList';
 import AnimeCard from './components/Anime/AnimeCard';
 
-function Routes({ login, register, token }) {
+function Routes({ login, register, token, animes }) {
   const Homepage = () => {
     return (
       <div>
@@ -38,7 +38,7 @@ function Routes({ login, register, token }) {
           <SignupForm register={register}/>
         </Route>
         <Route exact path="/top_anime">
-          <AnimeList/>
+          <AnimeList animes={animes}/>
         </Route>
         <Redirect to="/" />
       </Switch>

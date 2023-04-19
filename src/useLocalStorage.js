@@ -6,6 +6,9 @@ function useLocalStorage(key, initialState=null) {
     const [token, setToken] = useState(localStorage.getItem('token') || initialState);
     RBApi.token = token;
     useEffect(function updateKey() {
+        
+        console.log("useLocalStorage useEffect has run");
+        
         if (token === null) {
             localStorage.removeItem(key);
         } else {

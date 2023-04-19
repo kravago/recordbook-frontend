@@ -21,7 +21,7 @@ function AnimeCard({anime}) {
     return (
         <div style={divStyle}>
           <Card style={cardStyle}>
-            <Card.Header className="bg-dark text-black">{anime.title}</Card.Header>
+            <Card.Header className="bg-dark text-white">{anime.anime_title}</Card.Header>
             <Card.Body>
               <Card.Text>{anime.synopsis}</Card.Text>
             </Card.Body>

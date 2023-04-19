@@ -3,24 +3,8 @@ import React, {useEffect, useState} from 'react';
 import RBApi from '../../api';
 import AnimeCard from './AnimeCard';
 
-function AnimeList() {
-  const [animes, setAnimes] = useState([]);
+function AnimeList(animes) {
 
-  useEffect(() => {
-
-    console.log("get animes has run");
-    
-    getAnimes();
-  }, []);
-
-  const getAnimes = async () => {
-    const req = await RBApi.getTopAnimes();
-    setAnimes(req);
-  }
-
-//   const updateCompanies = (filteredCompanies) => {
-//     setCompanies([...filteredCompanies]);
-//   }
 
   return (
     <>
