@@ -17,7 +17,7 @@ function App() {
   const USER_INIT_STATE = {};
   const [currentUser, setCurrentUser] = useState(INITIAL_STATE);
   const [userInfo, setUserInfo] = useState(USER_INIT_STATE);
-  const [currentToken, setCurrentToken] = useLocalStorage('token');
+  const [currentToken, setCurrentToken] = useLocalStorage();
   const [isLoading, setIsLoading] = useState(false);
   const [animes, setAnimes] = useState([]);
 
@@ -28,14 +28,11 @@ function App() {
       setUserInfo(res);
     }
 
-    console.log("token check has run");
-    
-    // check if there is a token
-    const token_check = localStorage.getItem('token');
-    if (token_check) {
-      const { username } = jwt.decode(token_check);
+    if (currentToken) {
+      const { username } = jwt.decode(currentToken);
       setCurrentUser(username);
       getUserInfo(username);
+      console.log(username);
     }
     setIsLoading(false);
   }, [currentToken]);
@@ -44,18 +41,19 @@ function App() {
   useEffect(() => {
     const getAnimes = async () => {
       const req = await RBApi.getTopAnimes();
-      setAnimes(req);
+      setAnimes([...req]);
     }
+    getAnimes();
 
     console.log("get animes has run");
-
-    getAnimes();
+    
   }, []);
 
   const login = async (loginFormData) => {
     try {
       const res = await RBApi.login(loginFormData);
       setCurrentToken(res.token);
+      localStorage.setItem('token', res.token);
       console.log("login success")
       alert("login success")
     } catch (e) {
